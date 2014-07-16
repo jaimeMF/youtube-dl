@@ -349,8 +349,8 @@ class YoutubeIE(YoutubeBaseInfoExtractor, SubtitlesInfoExtractor):
     def _extract_signature_function(self, video_id, player_url, slen):
         id_m = re.match(r'.*-(?P<id>[a-zA-Z0-9_-]+)\.(?P<ext>[a-z]+)$',
                         player_url)
-        player_type = id_m.group('ext')
-        player_id = id_m.group('id')
+        player_type = 'swf'#id_m.group('ext')
+        player_id = 'vflq0-BLs'#id_m.group('id')
 
         # Read from filesystem cache
         func_id = '%s_%s_%d' % (player_type, player_id, slen)
@@ -1027,6 +1027,7 @@ class YoutubeIE(YoutubeBaseInfoExtractor, SubtitlesInfoExtractor):
                                     note=False,
                                     errnote='unable to download video info webpage')
             video_info = compat_parse_qs(video_info_webpage)
+            player_url = 'http://s.ytimg.com/yts/swfbin/player-vflq0-BLs/watch_as3.swf'
         else:
             age_gate = False
             for el_type in ['&el=embedded', '&el=detailpage', '&el=vevo', '']:
